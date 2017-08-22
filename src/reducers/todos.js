@@ -3,9 +3,10 @@ import {
     EDIT_TODO,
     DELETE_TODO
 } from '../actions/actionTypes.js'
+import { List } from 'immutable'
 
 const makeReducerCreator = (initState, handlers) => {
-    return (state = initState, action) => {
+    return (state = List(initState), action) => {
         if (handlers.hasOwnProperty(action.type)) {
             return handlers[action.type](state, action)
         } else {
@@ -15,14 +16,10 @@ const makeReducerCreator = (initState, handlers) => {
 }
 
 const handle_addTodo = (state, action) => {
-    let id = state.length || 0
-    return [
-        ...state,
-        {
-            id,
-            todo: action.todo
-        }
-    ]
+    return state.push({
+        id: action.id,
+        todo: action.todo
+    })
 }
 
 const handle_editTodo = (state, action) => {
@@ -31,9 +28,10 @@ const handle_editTodo = (state, action) => {
 
 const handle_deleteTodo = (state, action) => {
     // do some
-    const newState = [...state]
-    newState.splice(action.id, 1)
-    return newState
+    const delIndex = state.findIndex(item => {
+        return item.id === action.id
+    })
+    return state.splice(delIndex, 1)
 }
 
 const handles = {
@@ -42,4 +40,4 @@ const handles = {
     [DELETE_TODO] : handle_deleteTodo
 }
 
-export const todos = makeReducerCreator({}, handles)
+export const todos = makeReducerCreator([], handles)

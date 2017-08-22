@@ -5,6 +5,7 @@ import {
     DELETE_TODO
 } from './actionTypes.js'
 
+let nextTodoId = 0
 // Action生成器
 const makeActionCreator = (type, ...argNames) => {
     return (...argValues) => {
@@ -15,6 +16,9 @@ const makeActionCreator = (type, ...argNames) => {
         return action
     }
 }
-
-export const addTodo = makeActionCreator(ADD_TODO, 'todo')
+export const addTodo = (todo) => ({
+    type: 'ADD_TODO',
+    id: nextTodoId++,
+    todo
+})
 export const deleteTodo = makeActionCreator(DELETE_TODO, 'id')

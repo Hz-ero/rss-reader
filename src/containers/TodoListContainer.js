@@ -2,9 +2,12 @@ import { connect } from 'react-redux'
 import TodoList from '../components/TodoList.jsx'
 import { deleteTodo } from '../actions'
 
-const mapStateToProps = (state, ownProps) => ({
-    todoArray: state.todos
-})
+const mapStateToProps = (state, ownProps) => {
+    const immu_state = state.toObject()
+    return {
+        todoArray: immu_state.todos.toJS()
+    }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     clickDeleteItem: (todoId) => {
