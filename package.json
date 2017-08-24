@@ -5,10 +5,19 @@
   "description": "a basic project for node-react-redux-webpack",
   "author": "https://github.com/Hz-ero",
   "scripts": {
-    "start": "webpack-dev-server --devtool eval --progress --hot --content-base public",
+    "start": "node server",
+    "front": "webpack-dev-server --devtool eval --progress --hot --content-base build",
     "build": "NODE_ENV=production webpack --config webpack.production.config.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "connect-timeout": "^1.9.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.4",
+    "http-proxy-middleware": "^0.17.4",
+    "leancloud-storage": "^3.1.0",
+    "leanengine": "^3.0.0"
+  },
   "devDependencies": {
     "babel-core": "6.x",
     "babel-loader": "6.x",

@@ -8,7 +8,13 @@ module.exports = {
     hot: true,
     inline: true,
     contentBase: './build',
-    port: 8080
+    port: 8080,
+    proxy: {
+      "/feed": {
+        target: "http://www.ifanr.com",
+        changeOrigin: true
+      }
+    }
   },
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {

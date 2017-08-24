@@ -22,3 +22,14 @@ export const addTodo = (todo) => ({
     todo
 })
 export const deleteTodo = makeActionCreator(DELETE_TODO, 'id')
+
+
+export const testFetch = () => {
+    
+    fetch('/feed', {method: "GET"})
+        .then(res => console.log(res.text()))
+    return {
+        type: 'TEST_FETCH'
+    }
+
+}

@@ -5,7 +5,8 @@ import {
     BrowserRouter as Router,
     Route,
     Link
-  } from 'react-router-dom'
+} from 'react-router-dom'
+import Bundle from '../components/Bundle.jsx'
 
 const Home = () => (
     <div>
@@ -14,8 +15,10 @@ const Home = () => (
     </div>
 )
 
-const About = () => (
-    <div>About</div>
+const About = (props) => (
+    <Bundle load={() => import('./AboutContainer.js')}>
+        {(About) => <About {...props}/>}
+    </Bundle>
 )
 
 const App = () => (
