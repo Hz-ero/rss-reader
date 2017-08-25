@@ -4,8 +4,14 @@ import { deleteTodo } from '../actions'
 
 const mapStateToProps = (state, ownProps) => {
     const immu_state = state.toObject()
-    return {
-        todoArray: immu_state.todos.toJS()
+    if(!immu_state.todos.size) {
+        return {
+            todoArray: []
+        }
+    } else {
+        return {
+            todoArray: immu_state.todos.toJS()
+        }
     }
 }
 

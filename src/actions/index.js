@@ -2,7 +2,10 @@
 import {
     ADD_TODO,
     EDIT_TODO,
-    DELETE_TODO
+    DELETE_TODO,
+    FETCH_RSS_REQUEST,
+    FETCH_RSS_SUCCESS,
+    FETCH_RSS_FAIL
 } from './actionTypes.js'
 
 let nextTodoId = 0
@@ -24,12 +27,21 @@ export const addTodo = (todo) => ({
 export const deleteTodo = makeActionCreator(DELETE_TODO, 'id')
 
 
-export const testFetch = () => {
+// export const testFetch = () => {
     
-    fetch('/feed', {method: "GET"})
-        .then(res => console.log(res.text()))
-    return {
-        type: 'TEST_FETCH'
-    }
+//     fetch('/feed', {method: "GET"})
+//         .then(res => console.log(res.text()))
+//     return {
+//         type: 'TEST_FETCH'
+//     }
 
+// }
+
+export const fetchRSS = () => {
+    return {
+        types: [FETCH_RSS_REQUEST,
+            FETCH_RSS_SUCCESS,
+            FETCH_RSS_FAIL],
+        callAPI: () => fetch('/feed')        
+    }
 }

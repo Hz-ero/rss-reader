@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import About from '../components/About.jsx'
-import { testFetch } from '../actions'
+import { fetchRSS } from '../actions'
 
 const mapStateToProps = (state, ownProps) => ({
     // todoArray: state.todos
@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     clickFetch: () => {
-        dispatch(testFetch())
+        dispatch(fetchRSS())
     }
 })
 

@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import appReducer from './reducers'
 import App from './containers/App.jsx'
+import callAPI from './util/callAPI.js'
 
-const middleware = [ thunk ];
+const middleware = [ callAPI ];
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(appReducer, composeEnhancers(
