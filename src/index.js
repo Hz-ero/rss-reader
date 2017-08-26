@@ -8,8 +8,14 @@ import App from './containers/App.jsx'
 import callAPI from './util/callAPI.js'
 
 const middleware = [ callAPI ];
+let composeEnhancers = null;
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+if (process.env.NODE_ENV === 'production') {
+    composeEnhancers = compose
+} else {
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+}
+
 const store = createStore(appReducer, composeEnhancers(
     applyMiddleware(...middleware)
 ));
