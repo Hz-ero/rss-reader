@@ -6,7 +6,7 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-import Bundle from '../components/Bundle.jsx'
+import AboutContainer from './AboutContainer'
 
 const Home = () => (
     <div>
@@ -15,10 +15,10 @@ const Home = () => (
     </div>
 )
 
-const About = (props) => (
-    <Bundle load={() => import('./AboutContainer.js')}>
-        {(About) => <About {...props}/>}
-    </Bundle>
+const About = () => (
+    <div>
+        <AboutContainer />
+    </div>
 )
 
 const App = () => (
