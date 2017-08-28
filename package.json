@@ -7,8 +7,9 @@
   "scripts": {
     "start": "node server",
     "server": "gulp server",
-    "front": "webpack-dev-server --devtool eval --progress --hot --content-base build",
-    "build": "NODE_ENV=production webpack --config webpack.production.config.js"
+    "front": "webpack-dev-server --devtool eval --progress --config webpack.dev.config.js ",
+    "build": "NODE_ENV=production webpack",
+    "dll": "webpack --progress --colors --config webpack.dll.config.js -p"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -35,14 +36,15 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-loadable": "^4.0.4",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.1",
     "redux-immutable": "^4.0.0",
-    "redux-thunk": "^2.1.0",
     "style-loader": "~0.13.1",
     "url-loader": "^0.5.9",
     "webpack": "latest",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "latest"
   },
   "engines": {

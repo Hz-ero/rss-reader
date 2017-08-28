@@ -1,0 +1,34 @@
+import React from 'react'
+import Loadable from 'react-loadable';
+
+const LoadingComponent = (props) => {
+    if (props.isLoading) {
+        // While our other component is loading...
+        if (props.timedOut) {
+          // In case we've timed out loading our other component.
+          return <div>Loader timed out!</div>;
+        } else if (props.pastDelay) {
+          // Display a loading screen after a set delay.
+          return <div>Loading...</div>;
+        } else {
+          // Don't flash "Loading..." when we don't need to.
+          return null;
+        }
+      } else if (props.error) {
+        // If we aren't loading, maybe
+        return <div>Error! Component failed to load</div>;
+      } else {
+        // This case shouldn't happen... but we'll return null anyways.
+        return null;
+      }
+}
+
+const MyLoadable = (opts) => {
+  return Loadable(Object.assign({
+    loading: LoadingComponent,
+    delay: 2000,
+    timeout: 10000,
+  }, opts));
+}
+
+export default  MyLoadable

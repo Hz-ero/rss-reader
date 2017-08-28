@@ -1,4 +1,6 @@
 module.exports = {
+    devServer: require('./webpack-config/devServer.config.js'),
+    
     entry: require('./webpack-config/entry.config.js'),
 
     output: require('./webpack-config/output.config.js'),
@@ -7,5 +9,5 @@ module.exports = {
 
     resolve: require('./webpack-config/resolve.config.js'),
 
-    plugins: require('./webpack-config/plugins.product.config.js'),
+    plugins: require('./webpack-config/plugins.dev.config.js'),
 };

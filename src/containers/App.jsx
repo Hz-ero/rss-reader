@@ -1,4 +1,5 @@
 import React from 'react'
+import MyLoadable from '../util/MyLoadable';
 import TodoListContainer from './TodoListContainer'
 import TodoAddContainer from './TodoAddContainer'
 import {
@@ -6,7 +7,6 @@ import {
     Route,
     Link
 } from 'react-router-dom'
-import AboutContainer from './AboutContainer'
 
 const Home = () => (
     <div>
@@ -15,11 +15,10 @@ const Home = () => (
     </div>
 )
 
-const About = () => (
-    <div>
-        <AboutContainer />
-    </div>
-)
+
+const About = MyLoadable({
+    loader: () => import('./AboutContainer')
+})
 
 const App = () => (
     <Router>
