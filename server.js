@@ -12,16 +12,13 @@ var app = express();
 // 设置代理
 //context可以是单个字符串，也可以是多个字符串数组，分别对应你需要代理的api,星号（*）表示匹配当前路径下面的所有api
 const context = [`/feed`]
-
 //options可选的配置参数请自行看readme.md文档，通常只需要配置target，也就是你的api所属的域名。
 const options = {
     target: 'http://www.ifanr.com',
     changeOrigin: true
 }
-
 //将options对象用proxy封装起来，作为参数传递
 const apiProxy = proxy(options)
-
 //现在你只需要执行这一行代码，当你访问需要跨域的api资源时，就可以成功访问到了。
 app.use(context, apiProxy)
 
@@ -34,8 +31,8 @@ app.use(express.static('build'));
 // 设置默认超时时间
 app.use(timeout('15s'));
 
-// // 加载云引擎中间件
-// app.use(AV.express());
+// 加载云引擎中间件
+app.use(AV.express());
 
 app.enable('trust proxy');
 // 需要重定向到 HTTPS 可去除下一行的注释。
@@ -86,18 +83,14 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-// var AV = require('leanengine');
-
-// AV.init({
-//   appId: process.env.LEANCLOUD_APP_ID,
-//   appKey: process.env.LEANCLOUD_APP_KEY,
-//   masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
-// });
+AV.init({
+  appId: process.env.LEANCLOUD_APP_ID,
+  appKey: process.env.LEANCLOUD_APP_KEY,
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
+});
 
 // // 如果不希望使用 masterKey 权限，可以将下面一行删除
 // AV.Cloud.useMasterKey();
-
 
 // 端口一定要从环境变量 `LEANCLOUD_APP_PORT` 中获取。
 // LeanEngine 运行时会分配端口并赋值到该变量。
