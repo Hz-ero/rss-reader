@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 var dirVars = require('./base/dir-vars.config.js')
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 module.exports = [
@@ -18,5 +18,5 @@ module.exports = [
         context: dirVars.staticRootDir,
         manifest: require('../build/manifest.json')
     }),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
 ]

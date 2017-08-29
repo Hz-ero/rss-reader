@@ -3,8 +3,8 @@ import {
     EDIT_TODO,
     DELETE_TODO
 } from '../actions/actionTypes.js'
-import reducerCreator from './reducerCreator'
 import { List } from 'immutable'
+import { createReducer } from 'redux-action-tools'
 
 const handle_addTodo = (state, action) => {
     const newState = List(state)
@@ -22,15 +22,15 @@ const handle_deleteTodo = (state, action) => {
     const newState = List(state)
     // do some
     const delIndex = newState.findIndex(item => {
-        return item.id === action.id
+        return item.id === action.payload.todoId
     })
     return newState.splice(delIndex, 1)
 }
 
-const handles = {
-    [ADD_TODO] : handle_addTodo,
-    [EDIT_TODO] : handle_editTodo,
-    [DELETE_TODO] : handle_deleteTodo
-}
+const todos = createReducer()
+    .when(ADD_TODO, handle_addTodo)
+    .when(EDIT_TODO, handle_editTodo)
+    .when(DELETE_TODO, handle_deleteTodo)
+    .build([])
 
-export const todos = reducerCreator([], handles)
+export default todos

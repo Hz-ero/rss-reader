@@ -2,6 +2,7 @@ import React from 'react'
 import MyLoadable from '../util/MyLoadable';
 import TodoListContainer from './TodoListContainer'
 import TodoAddContainer from './TodoAddContainer'
+import TestButtonClick from '../components/TestButtonClick.jsx'
 import {
     BrowserRouter as Router,
     Route,
@@ -12,6 +13,7 @@ const Home = () => (
     <div>
         <TodoAddContainer />
         <TodoListContainer />
+        <TestButtonClick />
     </div>
 )
 

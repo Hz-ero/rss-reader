@@ -1,9 +1,5 @@
-import {
-    FETCH_RSS_REQUEST,
-    FETCH_RSS_SUCCESS,
-    FETCH_RSS_FAIL
-} from '../actions/actionTypes.js'
-import reducerCreator from './reducerCreator'
+import { FETCH_RSS } from '../actions/actionTypes.js'
+import { createReducer } from 'redux-action-tools'
 
 const handle_fetchRssReq = (state, action) => {
     console.log('fet req');
@@ -20,12 +16,10 @@ const handle_fetchRssFail = (state, action) => {
     return state
 }
 
-const handles = {
-    [FETCH_RSS_REQUEST]: handle_fetchRssReq,
-    [FETCH_RSS_SUCCESS]: handle_fetchRssRes,
-    [FETCH_RSS_FAIL]: handle_fetchRssFail
-}
-
-const rss = reducerCreator([], handles)
+const rss = createReducer()
+    .when(FETCH_RSS, handle_fetchRssReq)
+    .done(handle_fetchRssRes)
+    .failed(handle_fetchRssFail)
+    .build([])
 
 export default rss

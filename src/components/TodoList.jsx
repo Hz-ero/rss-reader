@@ -6,7 +6,7 @@ const TodoItem = (props) => {
     return (
         <div>
             <span>{todoContent}</span>
-            <button onClick={() => clickDeleteItem(index)} >删除</button>
+            <button onClick={() => clickDeleteItem({todoId:index})} >删除</button>
         </div>
     )
 }

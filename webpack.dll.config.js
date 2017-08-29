@@ -1,6 +1,7 @@
 var path = require("path"),
     webpack = require("webpack");
 var vendors = [
+    "core.js",
     'react',
     'react-dom',
     'react-loadable',

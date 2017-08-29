@@ -16,8 +16,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    clickDeleteItem: (todoId) => {
-        dispatch(deleteTodo(todoId))
+    clickDeleteItem: ({todoId}) => {
+        dispatch(deleteTodo({todoId}))
     }
 })
 
