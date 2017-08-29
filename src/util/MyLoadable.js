@@ -26,8 +26,8 @@ const LoadingComponent = (props) => {
 const MyLoadable = (opts) => {
   return Loadable(Object.assign({
     loading: LoadingComponent,
-    delay: 2000,
-    timeout: 10000,
+    delay: 200,
+    timeout: 1000,
   }, opts));
 }
 
