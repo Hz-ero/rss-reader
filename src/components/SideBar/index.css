@@ -1,0 +1,29 @@
+.clearfix {
+    zoom: 1;
+    display: table;
+    width: 100%;
+}
+
+.side {
+    width: 260px;
+    height: 100vh;
+    background-color: #3a3f51;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 255;
+}
+
+.header {
+    font-size: 20px;
+    line-height: 46px;
+    display: block;
+    color: white;
+    padding: 0 20px;
+    margin: 0;
+    border-bottom: solid 1px rgba(34, 36, 38, 0.9);
+}
+
+.sideMenu {
+    background-color: #3a3f51 !important;
+    margin-top: 0 !important;
+}

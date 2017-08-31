@@ -9,18 +9,47 @@ var proxy = require('http-proxy-middleware')
 
 var app = express();
 
-// 设置代理
-//context可以是单个字符串，也可以是多个字符串数组，分别对应你需要代理的api,星号（*）表示匹配当前路径下面的所有api
-const context = [`/feed`]
-//options可选的配置参数请自行看readme.md文档，通常只需要配置target，也就是你的api所属的域名。
-const options = {
-    target: 'http://www.ifanr.com',
-    changeOrigin: true
+
+/*
+ *  设置代理 
+ */
+const url_ithome = '/rss/ithome'
+const url_kr = '/rss/36kr'
+const url_ifanr = '/rss/ifanr'
+
+const option_ithome = {
+    target: 'https://www.ithome.com',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/rss/ithome' : '/rss/'
+    }
 }
-//将options对象用proxy封装起来，作为参数传递
-const apiProxy = proxy(options)
-//现在你只需要执行这一行代码，当你访问需要跨域的api资源时，就可以成功访问到了。
-app.use(context, apiProxy)
+const option_kr = {
+    target: 'http://36kr.com',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/rss/36kr' : '/feed'
+    }
+}
+const option_ifanr = {
+    target: 'https://www.ifanr.com',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/rss/ifanr' : '/feed'
+    }
+}
+const proxy_ithome = proxy(option_ithome)
+const proxy_kr = proxy(option_kr)
+const proxy_ifanr = proxy(option_ifanr)
+
+app.use(url_ithome, proxy_ithome)
+app.use(url_kr, proxy_kr)
+app.use(url_ifanr, proxy_ifanr)
+
+
+
+
+
 
 // 设置模板引擎
 // app.set('views', path.join(__dirname, 'views'));
@@ -84,9 +113,9 @@ app.use(function(err, req, res, next) {
 });
 
 AV.init({
-  appId: process.env.LEANCLOUD_APP_ID,
-  appKey: process.env.LEANCLOUD_APP_KEY,
-  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY
+  appId: process.env.LEANCLOUD_APP_ID || '10RauVJ62IqDQ8KsjqlW0Wm5-gzGzoHsz',
+  appKey: process.env.LEANCLOUD_APP_KEY || 'rDKhgYDrV0nGBhyNNGy3BRov',
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '68pshELmfW1aBX5hPegc9CKu'
 });
 
 // // 如果不希望使用 masterKey 权限，可以将下面一行删除

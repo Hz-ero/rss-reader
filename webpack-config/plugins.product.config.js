@@ -18,5 +18,5 @@ module.exports = [
         context: dirVars.staticRootDir,
         manifest: require('../build/manifest.json')
     }),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
 ]

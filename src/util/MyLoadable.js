@@ -32,3 +32,11 @@ const MyLoadable = (opts) => {
 }
 
 export default  MyLoadable
+
+
+/**
+ * 使用方法
+ */
+// const About = MyLoadable({
+//   loader: () => import('./AboutContainer')
+// })

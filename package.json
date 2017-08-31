@@ -30,6 +30,7 @@
     "babel-preset-stage-0": "6.x",
     "babel-runtime": "^6.26.0",
     "browser-sync": "^2.18.13",
+    "cheerio": "^1.0.0-rc.2",
     "css-loader": "~0.26.1",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
@@ -45,11 +46,13 @@
     "redux-action-tools": "^1.2.2",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.72.0",
     "style-loader": "~0.13.1",
     "url-loader": "^0.5.9",
     "webpack": "latest",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "latest"
+    "webpack-dev-server": "latest",
+    "xml2js": "^0.4.19"
   },
   "engines": {
     "node": "8.x"

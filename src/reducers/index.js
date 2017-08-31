@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux-immutable';
-import todos from './todos'
 import rss from './rss'
+import category from './category'
+import readable from './readable'
+import popPanel from './popPanel'
 
 const appReducer = combineReducers({
-    todos,
-    rss
+    rss,
+    category,
+    readable,
+    popPanel
 })
 
 export default appReducer

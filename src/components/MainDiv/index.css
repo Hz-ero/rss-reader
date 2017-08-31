@@ -1,0 +1,20 @@
+.mainDiv {
+    padding-left: 260px;
+    min-width: 810px;
+    width: 100%;
+    background-color: #fafbfc;
+    position: relative;
+}
+
+.noToTop {
+    visibility: hidden;
+}
+
+.toTop {
+    position: fixed;
+    right: 0px; bottom: 150px;
+}
+
+.toTop:hover {
+    cursor: pointer;
+}

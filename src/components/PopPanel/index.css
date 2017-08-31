@@ -1,0 +1,65 @@
+.clearfix {
+    zoom: 1;
+    display: table;
+    width: 100%;
+}
+
+.popPanel {
+    z-index: 250;
+    padding-left: 269px;
+    width: 100%; height: 100vh;
+    min-width: 810px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0; left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.article {
+    padding: 20px 30px;
+    width: 810px; min-height: 100vh;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 23px;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.info {
+    text-align: center;
+    color: #58666e;
+}
+
+.divider {
+    width: 740px;
+    margin: 15px auto;
+    border: solid 1px #edf1f2;
+}
+
+.content {
+    font-size: 16px;
+}
+
+.content p {
+    margin-bottom: 10px;
+    line-height: 2em;
+}
+
+.content strong {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.content img {
+    width: auto;  
+    height: auto;  
+    max-width: 100%;  
+    max-height: 100%; 
+}

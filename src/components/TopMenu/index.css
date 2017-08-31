@@ -1,0 +1,21 @@
+.clearfix {
+    zoom: 1;
+    display: table;
+    width: 100%;
+}
+
+.topMenu {
+    z-index: 245;
+    width: 100vw;
+    position: fixed;
+    top: 0; right: 0;
+    transition: top 0.6s;
+}
+
+.topMenu_fix {
+    z-index: 245;
+    width: 100vw;
+    position: fixed;
+    top: -43px; right: 0;
+    transition: top 0.6s;
+}

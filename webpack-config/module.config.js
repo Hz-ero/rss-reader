@@ -24,8 +24,7 @@ module.exports = {
         options: {
           presets: ['es2015', 'react', 'stage-0'],
           plugins: [
-            ['import', [{ libraryName: "antd", style: true }]],
-            ['transform-runtime']
+            ['import', [{ libraryName: "antd", style: true }]]
           ]
         }
       }

@@ -1,7 +1,6 @@
 var path = require("path"),
     webpack = require("webpack");
 var vendors = [
-    "core.js",
     'react',
     'react-dom',
     'react-loadable',
@@ -10,7 +9,10 @@ var vendors = [
     'react-redux',
     'react-router-dom',
     'immutable',
-    'redux-immutable'
+    'redux-immutable',
+    'cheerio',
+    'xml2js',
+    'semantic-ui-react'
 ];
 
 module.exports = {

@@ -1,15 +1,9 @@
-const ADD_TODO = 'ADD_TODO';
-const EDIT_TODO = 'EDIT_TODO';
-const DELETE_TODO = 'DELETE_TODO';
-const FETCH_RSS = 'FETCH_RSS';
-const FETCH_RSS_SUCCESS = 'FETCH_RSS_SUCCESS';
-const FETCH_RSS_FAIL = 'FETCH_RSS_FAIL';
-
-export {
-    ADD_TODO,
-    EDIT_TODO,
-    DELETE_TODO,
-    FETCH_RSS,
-    FETCH_RSS_SUCCESS,
-    FETCH_RSS_FAIL
-}
+export const ADD_TODO = 'ADD_TODO';
+export const EDIT_TODO = 'EDIT_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
+export const FETCH_RSS = 'FETCH_RSS';
+export const SWITCH_CATEGORY = 'SWITCH_CATEGORY';
+export const SWITCH_READABLE = 'SWITCH_READABLE';
+export const PANEL_POP = 'PANEL_POP';
+export const PANEL_UN_POP = 'PANEL_UN_POP';
+export const SET_ALL_READED = 'SET_ALL_READED';
