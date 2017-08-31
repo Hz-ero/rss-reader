@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server",
     "server": "gulp server",
-    "front": "webpack-dev-server --devtool eval --progress --config webpack.dev.config.js ",
+    "dev": "webpack-dev-server --devtool eval --progress --config webpack.dev.config.js ",
     "build": "NODE_ENV=production webpack",
     "dll": "webpack --progress --colors --config webpack.dll.config.js -p"
   },
