@@ -17,7 +17,7 @@ moduleExports.publicDir = path.resolve(moduleExports.staticRootDir, './public')
 // dll Manifest文件
 moduleExports.dllManifest = path.resolve(moduleExports.publicDir, './manifest.json')
 // html模版文件
-moduleExports.templateHtml = path.resolve(moduleExports.buildDir, './assets/template.html')
+moduleExports.templateHtml = path.resolve(moduleExports.publicDir, './assets/template.html')
 
 
 module.exports = moduleExports
