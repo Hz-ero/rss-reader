@@ -1,13 +1,13 @@
 module.exports = {
-    devServer: require('./webpack-config/devServer.config.js'),
-    
-    entry: require('./webpack-config/entry.config.js'),
+  devServer: require('./webpack-config/devServer.config.js'),
 
-    output: require('./webpack-config/output.config.js'),
+  entry: require('./webpack-config/entry.config.js'),
 
-    module: require('./webpack-config/module.config.js'),
+  output: require('./webpack-config/output.config.js'),
 
-    resolve: require('./webpack-config/resolve.config.js'),
+  module: require('./webpack-config/module.config.js'),
 
-    plugins: require('./webpack-config/plugins.dev.config.js'),
-};
+  resolve: require('./webpack-config/resolve.config.js'),
+
+  plugins: require('./webpack-config/plugins.dev.config.js'),
+}

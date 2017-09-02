@@ -4,25 +4,24 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import appReducer from './reducers'
-import App from './containers/App.jsx'
+import App from './containers/App'
 
-const middleware = [ ReduxThunk ];
-let composeEnhancers = null;
+const middleware = [ReduxThunk]
+let composeEnhancers = null
 
-// if (process.env.NODE_ENV === 'production') {
-//     composeEnhancers = compose
-// } else {
-//     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-// }
-composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+if (process.env.NODE_ENV === 'production') {
+  composeEnhancers = compose
+} else {
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+}
 
 const store = createStore(appReducer, composeEnhancers(
-    applyMiddleware(...middleware)
-));
+  applyMiddleware(...middleware),
+))
 
 render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementsByTagName('body')[0],
 )

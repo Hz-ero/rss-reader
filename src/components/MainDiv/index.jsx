@@ -1,57 +1,58 @@
 import React from 'react'
+import { Icon } from 'semantic-ui-react'
 import style from './index.css'
 import ArticleListContainer from '../../containers/ArticleListContainer'
 import PopPanelContainer from '../../containers/PopPanelContainer'
-import { Icon } from 'semantic-ui-react'
 
 class ToTop extends React.Component {
-    constructor(props) {
-        super(props)
-        this.handleToTop = this.handleToTop.bind(this)
-        this.handleScroll = this.handleScroll.bind(this)
-        
-        this.state = {
-            dontShow: true
-        }
-    }
+  constructor(props) {
+    super(props)
+    this.handleToTop = this.handleToTop.bind(this)
+    this.handleScroll = this.handleScroll.bind(this)
 
-    componentDidMount() {
-        window.addEventListener('scroll', this.handleScroll)
+    this.state = {
+      dontShow: true,
     }
+  }
 
-    componentWillUnmont() {
-        window.removeEventListener('scroll', this.handleScroll)
-    }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll)
+  }
 
-    handleScroll(e) {
-        if (document.body.scrollTop > 700) {
-            this.setState({ dontShow: false })
-        } else {
-            this.setState({ dontShow: true })
-        }
-    }
+  componentWillUnmont() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
 
-    handleToTop(e) {
-        document.documentElement.scrollTop = document.body.scrollTop = 0
+  handleScroll(e) {
+    if (document.body.scrollTop > 700) {
+      this.setState({ dontShow: false })
+    } else {
+      this.setState({ dontShow: true })
     }
+  }
 
-    render() {
-        return (
-            <div className={this.state.dontShow ? style.noToTop : style.toTop}
-                onClick={(e) => this.handleToTop(e)}
-            >
-                <Icon name='arrow circle up' size='big' />
-            </div>
-        )
-    }
+  handleToTop(e) {
+    document.documentElement.scrollTop = document.body.scrollTop = 0
+  }
+
+  render() {
+    return (
+      <div
+        className={this.state.dontShow ? style.noToTop : style.toTop}
+        onClick={e => this.handleToTop(e)}
+      >
+        <Icon name="arrow circle up" size="big" />
+      </div>
+    )
+  }
 }
 
 const MainDiv = () => (
-    <div className={style.mainDiv}>
-        <ArticleListContainer />
-        <PopPanelContainer />
-        <ToTop />
-    </div>
+  <div className={style.mainDiv}>
+    <ArticleListContainer />
+    <PopPanelContainer />
+    <ToTop />
+  </div>
 )
 
 export default MainDiv
