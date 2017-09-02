@@ -1,12 +1,12 @@
-const webpack = require('webpack');
-const dirVars = require('./base/dir-vars.config.js')
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-
-const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const dirVars = require('./base/dir-vars.config.js')
+
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = [
   new UglifyJsPlugin({
@@ -27,6 +27,7 @@ module.exports = [
   }]),
   new HtmlWebpackPlugin({
     title: 'RSS Reader',
+    template: dirVars.templateHtml,
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     assets: [

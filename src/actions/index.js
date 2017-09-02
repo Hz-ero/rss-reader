@@ -28,7 +28,7 @@ const PromiseParse = xml => new Promise((resolve, reject) => {
 })
 
 // fetch rss资源，参数：source
-const getRss = source => fetch(`/rss/${source}`)
+const getRss = source => fetch(`/fetch/${source}`)
   .then(res => res.text())
   .then(xmlText => PromiseParse(xmlText))
   .then(parseResult => [source, parseResult])

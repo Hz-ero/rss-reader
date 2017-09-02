@@ -8,26 +8,26 @@ module.exports = {
   port: 8080,
   stats: { colors: true },
   proxy: {
-    '/rss/ithome': {
+    '/fetch/ithome': {
       target: 'https://www.ithome.com',
       secure: false,
-      changeOrigin: false,
+      changeOrigin: true,
       pathRewrite: {
-        '^/rss/ithome': '/rss/',
+        '^/fetch/ithome': '/rss/',
       },
     },
-    '/rss/36kr': {
+    '/fetch/36kr': {
       target: 'http://36kr.com',
       changeOrigin: true,
       pathRewrite: {
-        '^/rss/36kr': '/feed',
+        '^/fetch/36kr': '/feed',
       },
     },
-    '/rss/ifanr': {
+    '/fetch/ifanr': {
       target: 'http://www.ifanr.com',
       changeOrigin: true,
       pathRewrite: {
-        '^/rss/ifanr': '/feed',
+        '^/fetch/ifanr': '/feed',
       },
     },
   },
