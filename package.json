@@ -12,13 +12,6 @@
     "server": "gulp server"
   },
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-loadable": "^4.0.4",
-    "react-redux": "^5.0.5",
-    "react-router-dom": "^4.1.1",
-    "redux": "^3.7.1",
-    "redux-thunk": "^2.2.0",
     "body-parser": "^1.17.2",
     "connect-timeout": "^1.9.0",
     "cookie-parser": "^1.4.3",
@@ -28,6 +21,13 @@
     "leanengine": "^3.0.0"
   },
   "devDependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-loadable": "^4.0.4",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "^4.1.1",
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0",
     "babel-core": "6.x",
     "babel-loader": "6.x",
     "babel-plugin-import": "^1.2.1",

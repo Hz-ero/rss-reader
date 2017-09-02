@@ -12,29 +12,29 @@ const app = express();
 /*
  *  设置代理 
  */
-const urlIthome = '/rss/ithome'
-const urlKr = '/rss/36kr'
-const urlIfanr = '/rss/ifanr'
+const urlIthome = '/fetch/ithome'
+const urlKr = '/fetch/36kr'
+const urlIfanr = '/fetch/ifanr'
 
 const optionIthome = {
   target: 'https://www.ithome.com',
   changeOrigin: true,
   pathRewrite: {
-    '^/rss/ithome': '/rss/',
+    '^/fetch/ithome': '/rss/',
   },
 }
 const optionKr = {
   target: 'http://36kr.com',
   changeOrigin: true,
   pathRewrite: {
-    '^/rss/36kr': '/feed',
+    '^/fetch/36kr': '/feed',
   },
 }
 const optionIfanr = {
   target: 'https://www.ifanr.com',
   changeOrigin: true,
   pathRewrite: {
-    '^/rss/ifanr': '/feed',
+    '^/fetch/ifanr': '/feed',
   },
 }
 const proxyIthome = proxy(optionIthome)

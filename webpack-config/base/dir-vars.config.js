@@ -5,9 +5,9 @@ const moduleExports = {}
 // 项目根目录
 moduleExports.staticRootDir = path.resolve(__dirname, '../../')
 // 项目业务代码根目录
-moduleExports.srcRootDir = path.resolve(moduleExports.staticRootDir, './src') 
+moduleExports.srcRootDir = path.resolve(moduleExports.staticRootDir, './src')
 // 项目入口文件
-moduleExports.entryDir = path.resolve(moduleExports.staticRootDir, './src/index.js') 
+moduleExports.entryDir = path.resolve(moduleExports.staticRootDir, './src/index.js')
 // 生成文件目录
 moduleExports.buildDir = path.resolve(moduleExports.staticRootDir, './build')
 // 编译生成的文件
