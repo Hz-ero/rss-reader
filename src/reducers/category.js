@@ -1,6 +1,10 @@
 import { createReducer } from 'redux-action-tools'
 import { SWITCH_CATEGORY } from '../actions/actionTypes'
 
+// 初始状态
+// 读取rss源：all；ithome；36kr；ifanr
+const stateInit = 'all' 
+
 const switchCategory = (state, action) => action.payload.category
 
 const category = createReducer()

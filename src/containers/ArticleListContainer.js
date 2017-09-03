@@ -2,6 +2,11 @@ import { connect } from 'react-redux'
 import { panelPop } from '../actions'
 import ArticleList from '../components/ArticleList/index.jsx'
 
+/**
+ * 依据阅读分类和rss源筛选要显示的文章列表
+ * @param {Object} state 
+ * @returns {Array} articles
+ */
 const queryArticlesByState = (state) => {
   const rssArray = state.rss
   const readable = state.readable

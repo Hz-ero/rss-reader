@@ -3,6 +3,7 @@ import { switchCategory, panelUnPop } from '../actions'
 import SideBar from '../components/SideBar/index.jsx'
 
 const mapStateToProps = (state) => {
+  // 所有rss源的未读文章数量
   let noReadNum_all = 0
   let noReadNum_ithome = 0
   let noReadNum_kr = 0

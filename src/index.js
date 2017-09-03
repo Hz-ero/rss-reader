@@ -9,6 +9,7 @@ import App from './containers/App'
 const middleware = [ReduxThunk]
 let composeEnhancers = null
 
+// dev环境下使用redux devTool
 if (process.env.NODE_ENV === 'production') {
   composeEnhancers = compose
 } else {

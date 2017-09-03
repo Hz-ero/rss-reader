@@ -1,8 +1,27 @@
 import { createReducer } from 'redux-action-tools'
 import { FETCH_RSS, PANEL_POP, SET_ALL_READED } from '../actions/actionTypes'
-
 const cheerio = require('cheerio')
 
+/* 
+*  初始状态
+*  状态以数组形式包含所有文章
+*  数组项： 
+*  {guid,title,link,imgSrc,shortDescrip,
+*   description,pubDate,source,readed}
+*/
+const stateInit = [] //设置：已读文章；未读文章；全部文章
+
+
+/**
+ * 在一段html文本中找出文章简介，一般在文章的第一二段
+ * 有些文章开头会以文章来源开头，需要过滤掉
+ * ithome过滤：/^感谢IT之家网友.*$/
+ * 36kr过滤：/^编者按:本文来自.*$/
+ * 不能过长，截取不超过130字符
+ * @param {string} content // html文本
+ * @param {string} source  // rss源
+ * @returns {string} shortDescrip
+ */
 const findShortDescrip = (content, source) => {
   const $ = cheerio.load(content)
   let paraIndex = 0
@@ -173,12 +192,20 @@ const resolve2html_ifanr = (rssItem) => {
   }
 }
 
+/**
+ * action.type:FETCH_RSS_COMPLETE
+ * 将从三个rss源fetch来的数据分别解析成为统一数据结构，并综合。
+ * [ ['ithome',{...}], ['36kr',{...}], ['ifanr',{...}] ]
+ * @param {Array} state 
+ * @param {Map} action.payload 
+ * @returns {Array} newState 
+ */
 const handleFetchRssDone = (state, action) => {
   // 初始化变量
-  let newState = {}
-  let rssIthome = {}
-  let rssKr = {}
-  let rssIfanr = {}
+  let newState = []
+  let rssIthome = []
+  let rssKr = []
+  let rssIfanr = []
 
   if (typeof action.payload !== 'object') {
     console.error('type error: ction.payload id not Map obj');
@@ -205,17 +232,21 @@ const handleFetchRssDone = (state, action) => {
   return newState
 }
 
+// action.type:FETCH_RSS_FAIL
 const handleFetchRssFail = (state) => {
   console.error('fetch rss fail');
   return state
 }
 
+// action.type:PANEL_POP 将显示的文章设为已读
 const toggleRssReaded = (state, action) => {
   const newState = [...state]
   const toggleIndex = newState.findIndex((item) => item.guid === action.payload.articleItem.guid)
   newState[toggleIndex].readed = true
   return newState
 }
+
+// action.type:SET_ALL_READED 将所有文章设为已读
 const setAllReaded = (state, action) => {
   const newState = [...state]
   newState.findIndex((item) => {
@@ -232,6 +263,6 @@ const rss = createReducer()
   .when(FETCH_RSS)
   .done(handleFetchRssDone)
   .failed(handleFetchRssFail)
-  .build([])
+  .build(stateInit)
 
 export default rss

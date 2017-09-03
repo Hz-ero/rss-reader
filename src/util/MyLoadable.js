@@ -3,18 +3,18 @@ import Loadable from 'react-loadable';
 
 const LoadingComponent = (props) => {
   if (props.isLoading) {
-    // While our other component is loading...
+    // 当进入加载过程
     if (props.timedOut) {
-      // In case we've timed out loading our other component.
+      // 超时返回：
       return <div>Loader timed out!</div>;
     } else if (props.pastDelay) {
-      // Display a loading screen after a set delay.
+      // 延时中返回：
       return <div>Loading...</div>;
     }
-    // Don't flash "Loading..." when we don't need to.
+    // 
     return null;
   } else if (props.error) {
-    // If we aren't loading, maybe
+    // 遇到错误返回：
     return <div>Error! Component failed to load</div>;
   }
   // This case shouldn't happen... but we'll return null anyways.

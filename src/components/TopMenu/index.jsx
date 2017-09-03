@@ -17,9 +17,6 @@ class TopMenu extends React.Component {
     }
   }
 
-  componentWillMount() {
-  }
-
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
     const { clickFetchRSS } = this.props

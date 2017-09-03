@@ -4,8 +4,9 @@ import TopMenu from '../components/TopMenu/index.jsx'
 
 
 /**
- * @param {any} state  
- * @returns true/false
+ * 检测在当前选择的阅读类型和rss源下是否存在未读文章
+ * @param {Object} state  
+ * @returns {bool} true/false
  */
 const checkCategoryNoRead = (state) => {
   let isCanSet = false

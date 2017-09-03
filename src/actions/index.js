@@ -17,6 +17,12 @@ export const deleteTodo = createAction(types.DELETE_TODO)
 // rss资源
 const rssSource = ['ithome', '36kr', 'ifanr']
 
+/**
+ * 将异步函数转为Promise表达
+ * ParseString：异步函数，将xml转化为JS对象
+ * @param {any} xml // xml string
+ * @returns {Promise}  // resolve/reject
+ */
 const PromiseParse = xml => new Promise((resolve, reject) => {
   ParseString(xml, (err, result) => {
     if (result) {
@@ -27,7 +33,11 @@ const PromiseParse = xml => new Promise((resolve, reject) => {
   })
 })
 
-// fetch rss资源，参数：source
+/**
+ * fetch rss源，进行处理解析 
+ * @param {any} source // rss源
+ * @returns {Promise}  // resolve/reject
+ */
 const getRss = source => fetch(`/fetch/${source}`)
   .then(res => res.text())
   .then(xmlText => PromiseParse(xmlText))
@@ -36,8 +46,12 @@ const getRss = source => fetch(`/fetch/${source}`)
     console.error(`fetch rss: ${source} fail!`);
   })
 
-// fetch三个rss资源，需要返回Promise对象
+/**
+ * fetch三个rss资源 
+ * @returns {Map}  // resolve/reject
+ */
 const handleFetchRss = () => {
+  // 生成Promise数组
   const promiseArray = rssSource.map(source => getRss(source))
 
   return Promise.all(promiseArray)
@@ -45,6 +59,9 @@ const handleFetchRss = () => {
       // 将数据生成Map类返回
       const mapValues = new Map(values)
       return mapValues
+    })
+    .catch(() => {
+      console.error(`Promise all fail!`);
     })
 }
 
