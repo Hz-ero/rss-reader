@@ -6,13 +6,10 @@
     position: relative;
 }
 
-.noToTop {
-    visibility: hidden;
-}
-
 .toTop {
+    z-index: 255;
     position: fixed;
-    right: 0px; bottom: 150px;
+    right: 10px; bottom: 150px;
 }
 
 .toTop:hover {

@@ -8,40 +8,24 @@ class ToTop extends React.Component {
   constructor(props) {
     super(props)
     this.handleToTop = this.handleToTop.bind(this)
-    this.handleScroll = this.handleScroll.bind(this)
-
-    this.state = {
-      dontShow: true,
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll)
-  }
-
-  componentWillUnmont() {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
-
-  handleScroll(e) {
-    if (document.body.scrollTop > 700) {
-      this.setState({ dontShow: false })
-    } else {
-      this.setState({ dontShow: true })
-    }
   }
 
   handleToTop(e) {
-    document.documentElement.scrollTop = document.body.scrollTop = 0
+    const PopPanel = document.getElementById('PopPanel')
+    if (PopPanel) {
+      PopPanel.scrollTop = 0
+    } else {
+      document.body.scrollTop = 0
+    }    
   }
 
   render() {
     return (
       <div
-        className={this.state.dontShow ? style.noToTop : style.toTop}
+        className={style.toTop}
         onClick={e => this.handleToTop(e)}
       >
-        <Icon name="arrow circle up" size="big" />
+        <img src="./assets/img/arrow_up.png" alt="arrow_up" />
       </div>
     )
   }

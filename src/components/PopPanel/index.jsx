@@ -16,7 +16,10 @@ class PopPanel extends React.Component {
     const { visible, article, clickUnPop } = this.props
     return (
       <Transition visible={visible} animation="scale" duration={300}>
-        <div className={style.popPanel} onClick={() => clickUnPop()}>
+        <div id="PopPanel"
+          className={style.popPanel} 
+          onClick={() => clickUnPop()}
+        >
           <div
             className={style.article}
             onClick={e => e.stopPropagation()}
