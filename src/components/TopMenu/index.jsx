@@ -20,7 +20,7 @@ class TopMenu extends React.Component {
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
     const { clickFetchRSS } = this.props
-    // clickFetchRSS()
+    clickFetchRSS()
   }
 
   componentWillUnmont() {
