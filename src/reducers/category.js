@@ -5,10 +5,20 @@ import { SWITCH_CATEGORY } from '../actions/actionTypes'
 // 读取rss源：all；ithome；36kr；ifanr
 const stateInit = 'all' 
 
-const switchCategory = (state, action) => action.payload.category
+const sources = ['all', 'ithome', '36kr', 'ifanr']
+const switchCategory = (state, action) => {
+  const checkCategory = sources.find(source => {
+    return source === action.payload.category
+  })
+  if (!checkCategory) {
+    throw new Error('rss source out of value')
+  } else {
+    return action.payload.category
+  }
+}
 
 const category = createReducer()
   .when(SWITCH_CATEGORY, switchCategory)
-  .build('all')
+  .build(stateInit)
 
 export default category
