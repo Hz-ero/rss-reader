@@ -214,7 +214,8 @@ const handleFetchRssDone = (state, action) => {
 
   // typeof action.payload -->  Map
   // [ ['ithome',{...}], ['36kr',{...}], ['ifanr',{...}] ]
-  action.payload.forEach((value, key) => {
+  const rssMap = new Map(action.payload)
+  rssMap.forEach((value, key) => {
     const itemsInRss = value.rss.channel[0].item
 
     if (key === 'ithome') {

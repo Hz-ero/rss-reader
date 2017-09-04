@@ -1,7 +1,8 @@
 // 定义常量
 import { createAction, createAsyncAction } from 'redux-action-tools'
 import * as types from './actionTypes'
-
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
 // Fn: xml --> js obj
 const ParseString = require('xml2js').parseString
 
@@ -38,7 +39,11 @@ const PromiseParse = xml => new Promise((resolve, reject) => {
  * @param {any} source // rss源
  * @returns {Promise}  // resolve/reject
  */
-const getRss = source => fetch(`/fetch/${source}`)
+let urlHost = ''
+if (process.env.NODE_ENV === 'test') {
+  urlHost = 'http://localhost:3030'
+}
+const getRss = source => fetch(urlHost + `/fetch/${source}`)
   .then(res => res.text())
   .then(xmlText => PromiseParse(xmlText))
   .then(parseResult => [source, parseResult])
@@ -55,11 +60,7 @@ const handleFetchRss = () => {
   const promiseArray = rssSource.map(source => getRss(source))
 
   return Promise.all(promiseArray)
-    .then((values) => {
-      // 将数据生成Map类返回
-      const mapValues = new Map(values)
-      return mapValues
-    })
+    .then(values => values)
     .catch(() => {
       console.error(`Promise all fail!`);
     })
