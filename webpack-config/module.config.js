@@ -10,7 +10,11 @@ module.exports = {
           loader: 'css-loader',
           options: {
             module: true,
-            localIdentName: '[local]--[hash:base64:5]',
+            getLocalIdent: (context, localIdentName, localName, options) => {
+              const usePath = context._module.context
+              const index = usePath.search(/\/components\//)
+              return usePath.slice(index+12) + '-' + localName     
+            }
           },
         },
       ],
