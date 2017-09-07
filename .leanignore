@@ -13,3 +13,4 @@ webpack.dev.config.js
 webpack.dll.config.js
 test/
 README.md
+coverage/

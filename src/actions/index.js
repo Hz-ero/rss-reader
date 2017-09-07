@@ -6,15 +6,6 @@ require('isomorphic-fetch')
 // Fn: xml --> js obj
 const ParseString = require('xml2js').parseString
 
-
-let nextTodoId = 0
-export const addTodo = todo => ({
-  type: 'ADD_TODO',
-  id: nextTodoId++,
-  todo,
-})
-export const deleteTodo = createAction(types.DELETE_TODO)
-
 // rss资源
 const rssSource = ['ithome', '36kr', 'ifanr']
 
@@ -48,7 +39,7 @@ const getRss = source => fetch(urlHost + `/fetch/${source}`)
   .then(xmlText => PromiseParse(xmlText))
   .then(parseResult => [source, parseResult])
   .catch(() => {
-    console.error(`fetch rss: ${source} fail!`);
+    console.error(`fetch rss: ${source} fail!`)
   })
 
 /**
@@ -62,11 +53,19 @@ const handleFetchRss = () => {
   return Promise.all(promiseArray)
     .then(values => values)
     .catch(() => {
-      console.error(`Promise all fail!`);
+      console.error(`Promise all fail!`)
     })
 }
 
+const handlefetchForTest = () => {
+  return fetch(urlHost + `/fetch/test`)
+}
+
+// async actions
+export const fetchForTest = createAsyncAction('FETCH_TEST', handlefetchForTest)
 export const fetchRSS = createAsyncAction(types.FETCH_RSS, handleFetchRss)
+
+// sync actions
 export const panelPop = createAction(types.PANEL_POP)
 export const panelUnPop = createAction(types.PANEL_UN_POP)
 export const switchCategory = createAction(types.SWITCH_CATEGORY)

@@ -3,20 +3,26 @@ import { PANEL_POP, PANEL_UN_POP } from '../actions/actionTypes'
 
 // 初始状态
 const stateInit = {
-  article: {},    // 储存需要展示的文章对象
-  visible: false, // flag:是否展示
+  article: {}, // 储存需要展示的文章对象
+  visible: false // flag:是否展示
 }
 
 // state --> newState
-const handlePanelPop = (state, action) => ({
-  article: action.payload.articleItem,
-  visible: true,
-})
+const handlePanelPop = (state, action) => {
+  if (!action.payload.articleItem) {
+    throw new Error('action dont have article Obj!')
+  } else {
+    return {
+      article: action.payload.articleItem,
+      visible: true
+    }
+  }
+}
 
 // state --> newState
 const handlePanelUnPop = () => ({
   article: {},
-  visible: false,
+  visible: false
 })
 
 const popPanel = createReducer()

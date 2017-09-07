@@ -1,7 +1,7 @@
 import { createReducer } from 'redux-action-tools'
 import { FETCH_RSS, PANEL_POP, SET_ALL_READED } from '../actions/actionTypes'
 const cheerio = require('cheerio')
-
+var he = require('he')
 /* 
 *  初始状态
 *  状态以数组形式包含所有文章
@@ -9,8 +9,7 @@ const cheerio = require('cheerio')
 *  {guid,title,link,imgSrc,shortDescrip,
 *   description,pubDate,source,readed}
 */
-const stateInit = [] //设置：已读文章；未读文章；全部文章
-
+const stateInit = [] // 设置：已读文章；未读文章；全部文章
 
 /**
  * 在一段html文本中找出文章简介，一般在文章的第一二段
@@ -22,7 +21,7 @@ const stateInit = [] //设置：已读文章；未读文章；全部文章
  * @param {string} source  // rss源
  * @returns {string} shortDescrip
  */
-const findShortDescrip = (content, source) => {
+export const findShortDescrip = (content, source) => {
   const $ = cheerio.load(content)
   let paraIndex = 0
   let regex = ''
@@ -47,21 +46,21 @@ const findShortDescrip = (content, source) => {
     shortDescrip = secondPara
   }
   if (shortDescrip.length > 131) {
-    shortDescrip = `${shortDescrip.slice(0, 130)  }...`
+    shortDescrip = `${shortDescrip.slice(0, 130)}...`
   }
   return shortDescrip
 }
 
 // ithome rss 项目解析
-const resolve2html_ithome = (rssItem) => {
+export const resolve2html_ithome = (rssItem) => {
   const $ = cheerio.load(rssItem.description[0])
 
   // guid
   let guid = rssItem.guid[0].slice(-10, -4)
-  guid = `ithome_${  guid}`
+  guid = `ithome_${guid}`
 
   // title
-  const title = rssItem.title[0]
+  const title = rssItem.title[0].replace(/(^\s*)|(\s*$)/g, '')
 
   // link
   const link = rssItem.link[0]
@@ -77,10 +76,11 @@ const resolve2html_ithome = (rssItem) => {
 
   // description
   $('img').wrap('<strong></strong>')
-  const description = $.html()
+  const needParseHtml = $.html()
+  const description = he.decode(needParseHtml)
 
   // pubDate
-  const pubDate = rssItem.pubDate[0]
+  const pubDate = rssItem.pubDate[0].replace(/(^\s*)|(\s*$)/g, '')
 
   // all data
   return {
@@ -93,20 +93,20 @@ const resolve2html_ithome = (rssItem) => {
     pubDate,
 
     source: 'ithome',
-    readed: false,
+    readed: false
   }
 }
 
 // 36kr rss 项目解析
-const resolve2html_36kr = (rssItem) => {
+export const resolve2html_36kr = (rssItem) => {
   const $ = cheerio.load(rssItem.description[0])
 
   // guid
   let guid = rssItem.guid[0].slice(18, 25)
-  guid = `36kr_${  guid}`
+  guid = `36kr_${guid}`
 
   // title
-  const title = rssItem.title[0]
+  const title = rssItem.title[0].replace(/(^\s*)|(\s*$)/g, '')
 
   // link
   const link = rssItem.link[0]
@@ -122,10 +122,11 @@ const resolve2html_36kr = (rssItem) => {
 
   // description
   $('img').wrap('<strong></strong>')
-  const description = $.html()
+  const needParseHtml = $.html()
+  const description = he.decode(needParseHtml)
 
   // pubDate
-  const pubDate = rssItem.pubDate[0]
+  const pubDate = rssItem.pubDate[0].replace(/(^\s*)|(\s*$)/g, '')
 
   // all data
   return {
@@ -138,19 +139,19 @@ const resolve2html_36kr = (rssItem) => {
     pubDate,
 
     source: '36kr',
-    readed: false,
+    readed: false
   }
 }
 
 // ifanr rss 项目解析
-const resolve2html_ifanr = (rssItem) => {
+export const resolve2html_ifanr = (rssItem) => {
   // guid
   const preGuid = rssItem.guid[0]
   let guid = preGuid._.slice(24, 30)
-  guid = `ifanr_${  guid}`
+  guid = `ifanr_${guid}`
 
   // title
-  const title = rssItem.title[0]
+  const title = rssItem.title[0].replace(/(^\s*)|(\s*$)/g, '')
 
   // link
   const link = rssItem.link[0]
@@ -166,16 +167,17 @@ const resolve2html_ifanr = (rssItem) => {
   shortDesHtml('body').children().remove()
   let shortDescrip = shortDesHtml('body').text()
   if (shortDescrip.length > 131) {
-    shortDescrip = `${shortDescrip.slice(0, 130)  }...`
+    shortDescrip = `${shortDescrip.slice(0, 130)}...`
   }
 
   // description
   const descripHtml = cheerio.load(rssItem['content:encoded'][0])
   descripHtml('img').wrap('<strong></strong>')
-  const description = descripHtml.html()
+  const needParseHtml = descripHtml.html()
+  const description = he.decode(needParseHtml)
 
   // pubDate
-  const pubDate = rssItem.pubDate[0]
+  const pubDate = rssItem.pubDate[0].replace(/(^\s*)|(\s*$)/g, '')
 
   // all data
   return {
@@ -188,7 +190,7 @@ const resolve2html_ifanr = (rssItem) => {
     pubDate,
 
     source: 'ifanr',
-    readed: false,
+    readed: false
   }
 }
 
@@ -208,7 +210,7 @@ const handleFetchRssDone = (state, action) => {
   let rssIfanr = []
 
   if (typeof action.payload !== 'object') {
-    console.error('type error: ction.payload id not Map obj');
+    console.error('type error: ction.payload id not Map obj')
     return newState
   }
 
@@ -235,12 +237,17 @@ const handleFetchRssDone = (state, action) => {
 
 // action.type:FETCH_RSS_FAIL
 const handleFetchRssFail = (state) => {
-  console.error('fetch rss fail');
+  console.error('fetch rss fail')
   return state
 }
 
 // action.type:PANEL_POP 将显示的文章设为已读
 const toggleRssReaded = (state, action) => {
+  // action请求reduce 但是state中没有数据
+  if ((!state.length) && action) {
+    throw new Error('state has no value!')
+  }
+
   const newState = [...state]
   const toggleIndex = newState.findIndex((item) => item.guid === action.payload.articleItem.guid)
   newState[toggleIndex].readed = true
@@ -249,9 +256,14 @@ const toggleRssReaded = (state, action) => {
 
 // action.type:SET_ALL_READED 将所有文章设为已读
 const setAllReaded = (state, action) => {
+  // action请求reduce 但是state中没有数据
+  if ((!state.length) && action) {
+    throw new Error('state has no value!')
+  }
+
   const newState = [...state]
-  newState.findIndex((item) => {
-    if (item.source === action.pryload.category) {
+  newState.map((item) => {
+    if ((item.source === action.payload.category) || (action.payload.category === 'all')) {
       item.readed = true
     }
   })
