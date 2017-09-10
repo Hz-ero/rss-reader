@@ -29,10 +29,9 @@ const mapStateToProps = (state) => {
     noReadNum_all,
     noReadNum_ithome,
     noReadNum_kr,
-    noReadNum_ifanr,
+    noReadNum_ifanr
   }
 }
-
 
 const mapDispatchToProps = dispatch => ({
   clickSwitchCategory: ({ category }) => {
@@ -41,12 +40,12 @@ const mapDispatchToProps = dispatch => ({
   },
   clickUnPop: () => {
     dispatch((panelUnPop()))
-  },
+  }
 })
 
 const SideBarContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SideBar)
 
 export default SideBarContainer

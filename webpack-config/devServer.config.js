@@ -13,22 +13,22 @@ module.exports = {
       secure: false,
       changeOrigin: true,
       pathRewrite: {
-        '^/fetch/ithome': '/rss/',
-      },
+        '^/fetch/ithome': '/rss/'
+      }
     },
     '/fetch/36kr': {
       target: 'http://36kr.com',
       changeOrigin: true,
       pathRewrite: {
-        '^/fetch/36kr': '/feed',
-      },
+        '^/fetch/36kr': '/feed'
+      }
     },
     '/fetch/ifanr': {
       target: 'http://www.ifanr.com',
       changeOrigin: true,
       pathRewrite: {
-        '^/fetch/ifanr': '/feed',
-      },
-    },
-  },
+        '^/fetch/ifanr': '/feed'
+      }
+    }
+  }
 }

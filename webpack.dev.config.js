@@ -9,5 +9,5 @@ module.exports = {
 
   resolve: require('./webpack-config/resolve.config.js'),
 
-  plugins: require('./webpack-config/plugins.dev.config.js'),
+  plugins: require('./webpack-config/plugins.dev.config.js')
 }

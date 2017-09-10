@@ -1,25 +1,24 @@
 import React from 'react'
-import { Icon } from 'semantic-ui-react'
 import style from './index.css'
 import ArticleListContainer from '../../containers/ArticleListContainer'
 import PopPanelContainer from '../../containers/PopPanelContainer'
 
 class ToTop extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.handleToTop = this.handleToTop.bind(this)
   }
 
-  handleToTop(e) {
+  handleToTop (e) {
     const PopPanel = document.getElementById('PopPanel')
     if (PopPanel) {
       PopPanel.scrollTop = 0
     } else {
       document.body.scrollTop = 0
-    }    
+    }
   }
 
-  render() {
+  render () {
     return (
       <div
         className={style.toTop}

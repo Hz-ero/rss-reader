@@ -14,23 +14,23 @@ const vendors = [
   'redux-immutable',
   'cheerio',
   'xml2js',
-  'semantic-ui-react',
-];
+  'semantic-ui-react'
+]
 
 module.exports = {
   entry: {
-    vendor: vendors,
+    vendor: vendors
   },
   output: {
     path: dirVars.publicDir,
     filename: '[name].dll.js',
-    library: '[name]_[hash]',
+    library: '[name]_[hash]'
   },
   plugins: [
     new webpack.DllPlugin({
       path: dirVars.dllManifest,
       name: '[name]_[hash]',
-      context: __dirname,
-    }),
-  ],
+      context: __dirname
+    })
+  ]
 }

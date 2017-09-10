@@ -21,12 +21,12 @@ const queryArticlesByState = (state) => {
           if (item.readed === false) {
             articles_by_readable.push(item)
           }
-          break;
+          break
         case 'readed':
           if (item.readed === true) {
             articles_by_readable.push(item)
           }
-          break;
+          break
         default:
           articles_by_readable.push(item)
       }
@@ -39,17 +39,17 @@ const queryArticlesByState = (state) => {
             if (item.source === 'ithome') {
               articles_by_catgory.push(item)
             }
-            break;
+            break
           case '36kr':
             if (item.source === '36kr') {
               articles_by_catgory.push(item)
             }
-            break;
+            break
           case 'ifanr':
             if (item.source === 'ifanr') {
               articles_by_catgory.push(item)
             }
-            break;
+            break
           default:
             articles_by_catgory.push(item)
         }
@@ -65,19 +65,19 @@ const mapStateToProps = (state) => {
   const showArticles = queryArticlesByState(immu_state)
   return {
     needFix: immu_state.popPanel.visible,
-    showArticles,
+    showArticles
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   clickPanelPop: ({ articleItem }) => {
     dispatch(panelPop({ articleItem }))
-  },
+  }
 })
 
 const ArticleListContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ArticleList)
 
 export default ArticleListContainer

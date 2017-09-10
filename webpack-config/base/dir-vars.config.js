@@ -19,5 +19,4 @@ moduleExports.dllManifest = path.resolve(moduleExports.publicDir, './manifest.js
 // html模版文件
 moduleExports.templateHtml = path.resolve(moduleExports.publicDir, './assets/template.html')
 
-
 module.exports = moduleExports

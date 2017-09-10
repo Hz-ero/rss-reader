@@ -13,11 +13,11 @@ module.exports = {
             getLocalIdent: (context, localIdentName, localName, options) => {
               const usePath = context._module.context
               const index = usePath.search(/\/components\//)
-              return usePath.slice(index+12) + '-' + localName     
+              return usePath.slice(index + 12) + '-' + localName
             }
-          },
-        },
-      ],
+          }
+        }
+      ]
     },
     {
       test: /\.js[x]?$/,
@@ -28,18 +28,18 @@ module.exports = {
         options: {
           presets: ['es2015', 'react', 'stage-0'],
           plugins: [
-            ['import', [{ libraryName: 'antd', style: true }]],
-          ],
-        },
-      },
+            ['import', [{ libraryName: 'antd', style: true }]]
+          ]
+        }
+      }
     },
     {
       test: /\.less$/,
       use: [
         { loader: 'style-loader' },
         { loader: 'css-loader', options: { importLoaders: 1 } },
-        { loader: 'less-loader' },
-      ],
+        { loader: 'less-loader' }
+      ]
     },
     {
       test: /\.(png|jpg|gif)$/,
@@ -47,10 +47,10 @@ module.exports = {
         {
           loader: 'url-loader',
           options: {
-            limit: 8192,
-          },
-        },
-      ],
-    },
-  ],
+            limit: 8192
+          }
+        }
+      ]
+    }
+  ]
 }

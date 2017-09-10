@@ -4,5 +4,5 @@ module.exports = {
   path: dirVars.buildDir,
   publicPath: '/',
   filename: '[name].[hash].js',
-  library: '[name]_[hash]',
+  library: '[name]_[hash]'
 }

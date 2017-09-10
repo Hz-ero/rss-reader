@@ -3,7 +3,7 @@ import { Dropdown, Menu, Modal, Button } from 'semantic-ui-react'
 import style from './index.css'
 
 class TopMenu extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.handleScroll = this.handleScroll.bind(this)
     this.clickOpenModal = this.clickOpenModal.bind(this)
@@ -13,50 +13,50 @@ class TopMenu extends React.Component {
     this.checkClass = [null, null]
     this.state = {
       change: false,
-      openModal: false,
+      openModal: false
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     window.addEventListener('scroll', this.handleScroll)
     const { clickFetchRSS } = this.props
     clickFetchRSS()
   }
 
-  componentWillUnmont() {
+  componentWillUnmont () {
     window.removeEventListener('scroll', this.handleScroll)
   }
 
-  clickOpenModal() {
+  clickOpenModal () {
     const { canSetAllReaded } = this.props
     if (canSetAllReaded) {
       this.setState({
-        openModal: true,
+        openModal: true
       })
     } else {
       return false
     }
   }
 
-  clickCloseModal() {
+  clickCloseModal () {
     this.setState({
-      openModal: false,
+      openModal: false
     })
   }
 
-  clickConfirmSetReaded() {
+  clickConfirmSetReaded () {
     const {
       readCategory,
-      clickAllReaded,
+      clickAllReaded
     } = this.props
 
     this.setState({
-      openModal: false,
+      openModal: false
     })
     clickAllReaded({ category: readCategory })
   }
 
-  handleScroll(e) {
+  handleScroll (e) {
     // 检测popPanel是否显示，若弹出显示，则函数跳出执行
     if (this.props.popPanelState) {
       return false
@@ -70,28 +70,28 @@ class TopMenu extends React.Component {
     this.checkClass.shift()
     if (diffY < 0) {
       this.checkClass.push('down')
-      if (this.checkClass[0] != this.checkClass[1]) {
+      if (this.checkClass[0] !== this.checkClass[1]) {
         this.setState({
-          change: true,
+          change: true
         })
       }
     } else {
       this.checkClass.push('up')
-      if (this.checkClass[0] != this.checkClass[1]) {
+      if (this.checkClass[0] !== this.checkClass[1]) {
         this.setState({
-          change: false,
+          change: false
         })
       }
     }
     this.beforeYOffset = window.pageYOffset
   }
 
-  render() {
+  render () {
     const {
       currentReadable,
       canSetAllReaded,
       clickFetchRSS,
-      clickSwitchReadable,
+      clickSwitchReadable
     } = this.props
 
     return (

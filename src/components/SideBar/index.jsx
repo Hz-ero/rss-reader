@@ -3,8 +3,8 @@ import { Label, Menu } from 'semantic-ui-react'
 import style from './index.css'
 
 const SideBar = ({
-  noReadNum_all, noReadNum_ithome, noReadNum_kr, 
-  noReadNum_ifanr, clickSwitchCategory, clickUnPop 
+  noReadNum_all, noReadNum_ithome, noReadNum_kr,
+  noReadNum_ifanr, clickSwitchCategory, clickUnPop
 }) => (
 
   <div className={style.side}

@@ -20,7 +20,6 @@ const ArticleCard = ({ articleItem, clickPanelPop }) => {
 }
 
 const ArticleList = ({ needFix, showArticles, clickPanelPop }) => {
-
   if (showArticles.length > 0) {
     return (
       <div

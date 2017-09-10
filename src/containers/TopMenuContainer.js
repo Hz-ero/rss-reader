@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { fetchRSS, switchReadable, setAllReaded } from '../actions'
 import TopMenu from '../components/TopMenu/index.jsx'
 
-
 /**
  * 检测在当前选择的阅读类型和rss源下是否存在未读文章
  * @param {Object} state  
@@ -37,7 +36,7 @@ const mapStateToProps = (state) => {
     currentReadable: immu_state.readable,
     canSetAllReaded: checkCategoryNoRead(immu_state),
     readCategory: immu_state.category,
-    popPanelState: immu_state.popPanel.visible,
+    popPanelState: immu_state.popPanel.visible
   }
 }
 
@@ -50,12 +49,12 @@ const mapDispatchToProps = dispatch => ({
   },
   clickAllReaded: ({ category }) => {
     dispatch(setAllReaded({ category }))
-  },
+  }
 })
 
 const TopMenuContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(TopMenu)
 
 export default TopMenuContainer

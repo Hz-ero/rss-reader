@@ -11,34 +11,34 @@ const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
 module.exports = [
   new UglifyJsPlugin({
     compress: {
-      warnings: false,
-    },
+      warnings: false
+    }
   }),
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify('production'),
-    },
+      NODE_ENV: JSON.stringify('production')
+    }
   }),
   new CleanWebpackPlugin(['build/main.*.js'], {
-    root: dirVars.staticRootDir,
+    root: dirVars.staticRootDir
   }),
   new CopyWebpackPlugin([{
-    from: dirVars.publicDir,
+    from: dirVars.publicDir
   }]),
   new HtmlWebpackPlugin({
     title: 'RSS Reader',
-    template: dirVars.templateHtml,
+    template: dirVars.templateHtml
   }),
   new HtmlWebpackIncludeAssetsPlugin({
     assets: [
       'vendor.dll.js', 'base.css',
-      { path: '/cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css', type: 'css' },
+      { path: '/cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css', type: 'css' }
     ],
-    append: false,
+    append: false
   }),
   new webpack.DllReferencePlugin({
     context: dirVars.staticRootDir,
-    manifest: dirVars.dllManifest,
-  }),
+    manifest: dirVars.dllManifest
+  })
   // new BundleAnalyzerPlugin()
 ]
