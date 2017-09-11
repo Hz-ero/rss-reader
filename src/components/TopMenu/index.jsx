@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Menu, Modal, Button } from 'semantic-ui-react'
+import { Dropdown, Menu, Modal, Button, Icon } from 'semantic-ui-react'
 import style from './index.css'
 
 class TopMenu extends React.Component {
@@ -123,7 +123,12 @@ class TopMenu extends React.Component {
                   已读文章</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Menu.Item icon="alarm" />
+            <Menu.Item>
+              <a href="https://github.com/Hz-ero/rss-reader"
+                target="_blank" >
+                <Icon link name='github' size="large"/>
+              </a>
+            </Menu.Item>
           </Menu.Menu>
         </Menu>
 
